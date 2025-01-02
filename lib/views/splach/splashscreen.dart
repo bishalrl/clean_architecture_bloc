@@ -3,6 +3,7 @@ import 'package:clean_architecture_and_blog/config/components/loading_widget.dar
 import 'package:clean_architecture_and_blog/config/components/round_button.dart';
 import 'package:clean_architecture_and_blog/config/data/exception/app_exception.dart';
 import 'package:clean_architecture_and_blog/config/routes/routes_name.dart';
+import 'package:clean_architecture_and_blog/services/splash/splash_service.dart';
 import 'package:flutter/material.dart';
 
 class SplachScreen extends StatefulWidget {
@@ -13,6 +14,14 @@ class SplachScreen extends StatefulWidget {
 }
 
 class _SplachScreenState extends State<SplachScreen> {
+  SplashService splashService = SplashService();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    splashService.isLogin(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,24 +33,9 @@ class _SplachScreenState extends State<SplachScreen> {
       ),
       body: SafeArea(
         child: Center(
-          child: Column(
-            children: [
-              const LoadingWidget(
-                size: 60,
-              ),
-              InternetException(
-                onPressed: () {},
-              ),
-              SizedBox(height: 20),
-              RoundButton(
-                  height: 50, width: 150, onPressed: () {}, title: 'Home'),
-              SizedBox(height: 20),
-              TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, RoutesName.homeScreen);
-                  },
-                  child: Text('Home')),
-            ],
+          child: Text(
+            'Splash Screen',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
       ),
